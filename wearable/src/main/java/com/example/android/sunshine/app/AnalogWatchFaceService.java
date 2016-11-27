@@ -42,6 +42,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import static com.example.android.sunshine.app.Utilities.getIconResourceForWeatherCondition;
+import static com.example.android.sunshine.app.Utilities.getstringforweatherCondition;
 
 public class AnalogWatchFaceService extends CanvasWatchFaceService {
 
@@ -105,7 +106,7 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
         private Paint mmaxTempPaint;
         private Paint mminTempPaint;
         private Paint mWeatherTextPaint;
-        private Paint mWeatherIconPaint;
+
 
         // Watch hands colors
         private int mWatchHandColor;
@@ -128,6 +129,9 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
 
         private int mMaxTempOffsetX;
         private int mMinTempOffsetX;
+
+        private int mWeatherTextOffsetX;
+        private int mWeatherTextOffsetY;
 
         private GoogleApiClient mgoogleApiClient;
 
@@ -220,6 +224,9 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
             mTickAndCirclePaint.setStyle(Paint.Style.STROKE);
             mTickAndCirclePaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
+            mWeatherTextPaint = createTextPaint(mWatchHandColor);
+            mWeatherTextPaint.setTextSize(15);
+
             mAmPmPaint = createTextPaint(mWatchHandColor);
             mAmPmPaint.setTextSize(20);
             mAmPmPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
@@ -287,6 +294,9 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
             mMaxTempOffsetX = (isRound ? 35 : 25);
             mMinTempOffsetX = (isRound ? 40 : 30);
 
+            mWeatherTextOffsetX = (isRound ? 50 :40);
+            mWeatherTextOffsetY = (isRound ? 200:200);
+
 
         }
 
@@ -313,6 +323,7 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
                 mAmPmPaint.setColor(Color.WHITE);
                 mmaxTempPaint.setColor(Color.WHITE);
                 mminTempPaint.setColor(Color.WHITE);
+                mWeatherTextPaint.setColor(Color.WHITE);
 
                 mHourPaint.setAntiAlias(false);
                 mMinutePaint.setAntiAlias(false);
@@ -321,6 +332,7 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
                 mAmPmPaint.setAntiAlias(false);
                 mmaxTempPaint.setAntiAlias(false);
                 mminTempPaint.setAntiAlias(false);
+                mWeatherTextPaint.setAntiAlias(false);
 
                 mHourPaint.clearShadowLayer();
                 mMinutePaint.clearShadowLayer();
@@ -329,6 +341,7 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
                 mAmPmPaint.clearShadowLayer();
                 mmaxTempPaint.clearShadowLayer();
                 mminTempPaint.clearShadowLayer();
+                mWeatherTextPaint.clearShadowLayer();
             } else {
                 mHourPaint.setColor(mWatchHandColor);
                 mMinutePaint.setColor(mWatchHandColor);
@@ -431,10 +444,19 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
             canvas.drawText(maxTemp + "\u00b0", mCenterX + mMaxTempOffsetX, mCenterY + 45, mmaxTempPaint);
             canvas.drawText(minTemp + "\u00b0", mCenterX + mMinTempOffsetX, mCenterY + 80, mminTempPaint);
 
+//            String weatherText =
+//            canvas.drawText();
+
             if (!mAmbient) {
                 int icon = getIconResourceForWeatherCondition(weatherId);
                 Bitmap weatherIcon = BitmapFactory.decodeResource(getResources(), icon);
                 canvas.drawBitmap(weatherIcon, mIconOffsetX, mIconOffsetY, null);
+            }
+
+            if(mAmbient){
+                String weatherCondtition = getstringforweatherCondition(weatherId);
+                canvas.drawText(weatherCondtition ,50,200,mWeatherTextPaint);
+
             }
 
             // Save the canvas state before we can begin to rotate it
@@ -589,7 +611,7 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
 
         @Override
         public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-            Log.d("Connection", "Failed" + connectionResult.getErrorMessage());
+            Log.d("Connection", "Failed" );
         }
     }
 
