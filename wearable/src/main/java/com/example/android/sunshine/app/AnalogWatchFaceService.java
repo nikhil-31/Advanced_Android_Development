@@ -135,8 +135,8 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
 
         private GoogleApiClient mgoogleApiClient;
 
-        private String maxTemp = "27";
-        private String minTemp = "19";
+        private String maxTemp = " ";
+        private String minTemp = " ";
         private int weatherId = 200;
 
 

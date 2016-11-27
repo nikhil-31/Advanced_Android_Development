@@ -105,6 +105,8 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements 
 
     private final GoogleApiClient googleApiClient;
 
+    Context context = getContext();
+
     public SunshineSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
         googleApiClient = new GoogleApiClient.Builder(context)
@@ -690,7 +692,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements 
         spe.commit();
     }
 
-    private void notifyWearable(){//double high, double low, int wearWeatherId) {
+    private void notifyWearable(){
 
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create("/wear_face");
 
@@ -715,8 +717,10 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements 
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.d("Testing","done");//+bundle.toString());
+        Log.d("Testing","done");
         notifyWearable();
+
+        syncImmediately(context);
     }
 
     @Override
