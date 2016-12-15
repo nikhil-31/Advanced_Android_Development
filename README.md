@@ -1,35 +1,23 @@
 Advanced Android Sample App
 ===================================
+##Part of udacity android nanodegree project p6
 
-Synchronizes weather information from OpenWeatherMap on Android Phones and Tablets. Used in the Udacity Advanced Android course.
+Synchronizes weather information from OpenWeatherMap on Android Phones and Tablets. Used in the Udacity Advanced Android course. 
 
-Pre-requisites
---------------
-Android SDK 21 or Higher
-Build Tools version 21.1.2
-Android Support AppCompat 22.2.0
-Android Support Annotations 22.2.0
-Android Support GridLayout 22.2.0
-Android Support CardView 22.2.0
-Android Support Design 22.2.0
-Android Support RecyclerView 22.2.0
-Google Play Services GCM 7.0.0
-BumpTech Glide 3.5.2
+##Overview
 
+This project takes data from the sunshine applicaiton and displays information in a analog watchface. It shows the max and min tempratures as well as an icon for the weather condition. A data item sends the required information to the watchface service.
 
-Getting Started
----------------
-This sample uses the Gradle build system.  To build this project, use the
-"gradlew build" command or use "Import Project" in Android Studio.
+##Screenshots
 
-Support
--------
+###Square watch face
 
-- Google+ Community: https://plus.google.com/communities/105153134372062985968
-- Stack Overflow: http://stackoverflow.com/questions/tagged/android
+![screenshot_1480179123](https://cloud.githubusercontent.com/assets/19944703/21213964/cdc8d8f0-c2bd-11e6-8298-72f82cd4f1f8.png)
 
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub. Please see CONTRIBUTING.md for more details.
+###Round watch face
+
+![screenshot_1480179133](https://cloud.githubusercontent.com/assets/19944703/21213967/d064bb2e-c2bd-11e6-8f44-42809786e55e.png)
+
 
 License
 -------
