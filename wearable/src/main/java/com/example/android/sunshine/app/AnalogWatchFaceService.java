@@ -135,8 +135,8 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
 
         private GoogleApiClient mgoogleApiClient;
 
-        private String maxTemp = " ";
-        private String minTemp = " ";
+        private String maxTemp = "0";
+        private String minTemp = "0";
         private int weatherId = 200;
 
 
@@ -613,6 +613,8 @@ public class AnalogWatchFaceService extends CanvasWatchFaceService {
         public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
             Log.d("Connection", "Failed" );
         }
+
+
     }
 
 

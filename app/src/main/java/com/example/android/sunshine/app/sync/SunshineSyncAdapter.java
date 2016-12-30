@@ -730,6 +730,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements 
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d("Connection","Faile d"+connectionResult.toString());
+        Log.d("Connection","Failed"+connectionResult.toString());
     }
 }
